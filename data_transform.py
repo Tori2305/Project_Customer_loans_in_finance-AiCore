@@ -12,11 +12,12 @@ class DataTransform:
         self.df[column] = self.df[column].astype(float)
         return self.df
 
-    def convert_to_datetime(self, column: str, date_format: str = None) -> pd.DataFrame:
-        if date_format:
-            self.df[column] = pd.to_datetime(self.df[column], format=date_format)
-        else: 
-            self.df[column] = pd.to_datetime(self.df[column])
+    def convert_multiple_to_datetime(self, columns: list, date_format: str = None) -> pd.DataFrame:
+        for column in columns: 
+            if date_format:
+                self.df[column] = pd.to_datetime(self.df[column], format=date_format)
+            else: 
+                self.df[column] = pd.to_datetime(self.df[column])
         return self.df
 
     def convert_to_category(self, column: str) -> pd.DataFrame:
