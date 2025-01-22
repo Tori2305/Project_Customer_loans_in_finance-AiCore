@@ -1,7 +1,8 @@
+from sqlalchemy import create_engine
 import psycopg2
 import pandas as pd
 import yaml
-from sqlalchemy import create_engine
+
 
 class RDSDatabaseConnector: 
     def __init__(self, credentials:dict):
@@ -23,6 +24,9 @@ class RDSDatabaseConnector:
             print(f"Error initializing SQLAlchemy engine: {e}")
 
     def extract_data(self, query:str) -> pd.DataFrame:
+        '''
+        extracts data from engine if it's been initialised correctly 
+        '''
         if self.engine is None: 
             raise ValueError ("Engine is not initialised. Call initialise_engine() first")
         return pd.read_sql(query,self.engine)
