@@ -30,7 +30,7 @@ class DataFrameTransform:
 
     def transform_skewed_cols(self, columns:list) -> pd.DataFrame:
         for column in columns:
-            print(f"Processing column: {column}")
+            print(f"\nProcessing column: {column}")
 
             if (self.df[column] <= 0).any():
                 self.df[column] = self.df[column] - self.df[column].min() + 1
@@ -61,7 +61,7 @@ class DataFrameTransform:
                 'boxcox': boxcox_skewness
             }
             best_transformation = min(transformations, key=transformations.get)
-            print(f"Best transformation for {column}: {best_transformation}")
+            print(f"\nBest transformation for {column}: {best_transformation}")
 
             # Apply the best transformation
             if best_transformation == 'log':
