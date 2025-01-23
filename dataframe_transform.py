@@ -11,20 +11,52 @@ class DataFrameTransform:
         return null_df[null_df['null_count'] > 0]
     
     def drop_columns(self, columns: list) -> pd.DataFrame:
-        self.df = self.df.drop(columns=columns)
-        return self.df
+        new_df = self.df.drop(columns=columns)
+        return new_df
 
-    def impute_missing_values(self, strategy: str = 'median') -> pd.DataFrame:
-        for column in self.df.columns:
-            if self.df[column].isnull().sum() > 0:
-                if self.df[column].dtype in ['float64','int64']:
+    def impute_missing_values(self, df: pd.DataFrame, strategy: str = 'median') -> pd.DataFrame:
+        for column in df.columns:
+            if df[column].isnull().sum() > 0:
+                if df[column].dtype in ['float64','int64']:
                     if strategy == 'median':
-                        self.df[column].fillna(self.df[column].median())
+                        df[column].fillna(self.df[column].median())
                     elif strategy == 'mean':
-                        self.df[column].fillna(self.df[column].mean())
+                        df[column].fillna(self.df[column].mean())
                 else:
-                    self.df[column] = self.df[column].fillna(self.df[column].mode()[0])
-        return self.df
+                    df[column] = self.df[column].fillna(self.df[column].mode()[0])
+        return df
+
+    def transform_skewed_cols(self, columns:list) -> pd.DataFrame:
+        for column in columns:
+            #Apply log transformation
+            log_transformed = np.log1p(self.df[column])
+            log_skewness = log_transformed.skew()
+
+            # Apply square root transformation
+            sqrt_transformed = np.sqrt(self.df[column])
+            sqrt_skewness = sqrt_transformed.skew()
+
+            # Apply Box-Cox transformation (requires positive values)
+            boxcox_transformed, _ = boxcox(self.df[column] + 1)
+            boxcox_skewness = pd.Series(boxcox_transformed).skew()
+
+            # Determine the best transformation
+            transformations = {
+                'log': log_skewness,
+                'sqrt': sqrt_skewness,
+                'boxcox': boxcox_skewness
+            }
+            best_transformation = min(transformations, key=transformations.get)
+
+            # Apply the best transformation
+            if best_transformation == 'log':
+                self.df[column] = log_transformed
+            elif best_transformation == 'sqrt':
+                self.df[column] = sqrt_transformed
+            elif best_transformation == 'boxcox':
+                self.df[column] = boxcox_transformed
+
+        return self.df 
 
     def get_cleaned_dataframe(self) -> pd.DataFrame:
         return self.df
