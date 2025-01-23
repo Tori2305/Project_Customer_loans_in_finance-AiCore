@@ -5,6 +5,16 @@ class DataTransform:
     def __init__(self, df: pd.DataFrame):
         self.df = df
 
+    def convert_to_int(self, column: str) -> pd.DataFrame:
+        print(f"Converting column: {column}")
+        print(f"Original data:\n{self.df[column].head()}")
+        
+        self.df[column] = self.df[column].str.extract(r'(\d+)')
+        self.df[column] = self.df[column].fillna(0).astype(int)
+        
+        print(f"Converted data:\n{self.df[column].head()}")
+        return self
+
     def convert_employment_length(self, column:str) -> pd.DataFrame: 
         self.df[column] = self.df[column].str.replace('< 1 year', '0')
         self.df[column] = self.df[column].str.replace('10+ years', '10')
