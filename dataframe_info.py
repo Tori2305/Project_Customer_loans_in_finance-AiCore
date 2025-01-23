@@ -9,7 +9,8 @@ class DataFrameInfo:
         return self.df.dtypes
     
     def extract_statistical_values(self) -> pd.DataFrame:
-        return self.df.agg(['median','std','mean'])
+        numberic_cols=self.df.select_dtypes(include=['number']).columns
+        return self.df[numberic_cols].agg(['median','std','mean'])
     
     def count_distinct_values(self) -> pd.DataFrame:
         categorical_columns = self.df.select_dtypes(
@@ -21,11 +22,8 @@ class DataFrameInfo:
 
     def count_null_values(self) -> pd.DataFrame:
         null_counts = self.df.isnull().sum()
-        null_percentage = (self.df.isnull().sum() / len(self.df)) * 100
+        null_percentage = round((self.df.isnull().sum() / len(self.df)) * 100,2)
         return pd.DataFrame({'null_count': null_counts, 'null_percentage': null_percentage})
 
     def get_summary(self) -> pd.DataFrame:
         return self.df.describe()
-
-    def get_correlation_matrix(self) -> pd.DataFrame:
-        return self

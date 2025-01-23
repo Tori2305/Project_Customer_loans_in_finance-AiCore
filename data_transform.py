@@ -6,13 +6,8 @@ class DataTransform:
         self.df = df
 
     def convert_to_int(self, column: str) -> pd.DataFrame:
-        print(f"Converting column: {column}")
-        print(f"Original data:\n{self.df[column].head()}")
-        
         self.df[column] = self.df[column].str.extract(r'(\d+)')
         self.df[column] = self.df[column].fillna(0).astype(int)
-        
-        print(f"Converted data:\n{self.df[column].head()}")
         return self
 
     def convert_employment_length(self, column:str) -> pd.DataFrame: 
@@ -32,6 +27,11 @@ class DataTransform:
 
     def convert_to_category(self, column: str) -> pd.DataFrame:
         self.df[column] = self.df[column].astype('category')
+        return self.df
+
+    def convert_to_date(self, columns:list) -> pd.DataFrame:
+        for column in columns:
+            self.df[column]=pd.to_datetime(self.df[column]).dt.date
         return self.df
     
     def get_dataframe(self) -> pd.DataFrame:
