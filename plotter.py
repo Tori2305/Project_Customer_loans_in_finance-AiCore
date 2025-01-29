@@ -48,3 +48,6 @@ class Plotter:
         fig.show()
 
     
+
+    def plot_removed_outliers(self, column:str):
+        

@@ -73,5 +73,23 @@ class DataFrameTransform:
 
         return self.df 
 
+
+    def remove_outliers(self, columns: list, method: str = 'both'):
+        for column in columns:
+            if method == 'IQR'or method == 'both':
+                Q1 = self.df[column].quantile(0.25)
+                Q3 = self.df[column].quantile(0.75)
+                IQR = Q3 - Q1
+                lower_bound = Q1 - 1.5 * IQR
+                upper_bound = Q3 + 1.5 * IQR
+                self.df = self.df[(self.df[column] >= lower_bound) & (self.df[column] <= upper_bound)]
+            elif method == 'Z-score' or method == 'both':
+                from scipy import stats
+                self.df = self.df[(np.abs(stats.zscore(self.df[column])) < 3)]
+        return self.df
+
+
     def get_cleaned_dataframe(self) -> pd.DataFrame:
         return self.df
+
+
