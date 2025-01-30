@@ -90,7 +90,7 @@ class DataFrameTransform:
         return self.df
 
 
-    def find_highly_correlated_pairs(correlation_matrix, threshold=0.8):
+    def find_highly_correlated_pairs(self, correlation_matrix: pd.DataFrame, threshold: float):
         '''
         Function to find pairs of highly correlated features
         '''
@@ -99,7 +99,7 @@ class DataFrameTransform:
             for j in range(i):
                 if abs(correlation_matrix.iloc[i, j]) > threshold:
                     highly_correlated_pairs.append((correlation_matrix.columns[i], correlation_matrix.columns[j], correlation_matrix.iloc[i, j]))
-        return 
+        return highly_correlated_pairs
 
 
 
