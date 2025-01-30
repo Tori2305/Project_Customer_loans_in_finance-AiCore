@@ -1,6 +1,8 @@
 from scipy.stats import boxcox
+from scipy import stats
 import pandas as pd
 import numpy as np
+
 
 class DataFrameTransform:
     def __init__(self,df:pd.DataFrame):
@@ -84,7 +86,6 @@ class DataFrameTransform:
                 upper_bound = Q3 + 1.5 * IQR
                 self.df = self.df[(self.df[column] >= lower_bound) & (self.df[column] <= upper_bound)]
             elif method == 'Z-score' or method == 'both':
-                from scipy import stats
                 self.df = self.df[(np.abs(stats.zscore(self.df[column])) < 3)]
         return self.df
 

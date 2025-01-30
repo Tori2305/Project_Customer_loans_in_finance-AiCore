@@ -47,7 +47,8 @@ class Plotter:
         fig.update_layout(title=f'Boxplot of {column} (Original and Transformed)', yaxis_title='Values')
         fig.show()
 
-    
-
     def plot_removed_outliers(self, column:str):
-        
+        fig = px.histogram(self.original_df, x=column, nbins=30, title=f'Histogram of {column} (Outliers Removed)')
+        fig.update_layout(xaxis_title=column, yaxis_title='Frequency')
+        fig.show()
+
