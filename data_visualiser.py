@@ -10,15 +10,29 @@ class DataVisualiser:
     Class to visualise insights from the data
     '''
     def __init__(self, df: pd.DataFrame):
+        '''
+        Initialise with a DataFrame.
+
+        Parameters
+        df(pd.DataFrame): The DataFrame to be transformed.
+        '''
         self.df = df
 
-    def plot_correlation_matrix(self, columns: pd.DataFrame, save_as_html=False, file_name='correlation_matrix.html'):
+    def plot_correlation_matrix(self, columns: list , save_as_html : bool =False, file_name: str ='correlation_matrix.html'):
         '''
-        Method to plot the correlation matrix of the given DataFrame
+        Method to plot the correlation matrix of the given columns in the DataFrame.
+        
+        Parameters:
+        columns (list): List of columns to include in the correlation matrix.
+        save_as_html (bool): Whether to save the plot as an HTML file. Defaults to False.
+        file_name (str): The file name for saving the HTML plot. Defaults to 'correlation_matrix.html'.
+        
+        Returns:
+        None
         '''
-        # Convert non-numeric columns to numeric and drop columns with non-numeric values
+        selected_df = self.df[columns]
 
-        correlation_matrix = columns.corr() 
+        correlation_matrix = selected_df.corr() 
 
         fig = px.imshow(correlation_matrix, text_auto=True, aspect="auto", color_continuous_scale='RdBu_r')
         fig.update_layout(title='Correlation Matrix', width=800, height=800)
