@@ -90,7 +90,7 @@ class DataFrameTransform:
         return self.df
 
 
-    def find_highly_correlated_pairs(self, correlation_matrix: pd.DataFrame, threshold: float):
+    def find_highly_correlated_pairs(self, correlation_matrix: pd.DataFrame, threshold: float = 0.8):
         '''
         Function to find pairs of highly correlated features
         '''
@@ -101,6 +101,12 @@ class DataFrameTransform:
                     highly_correlated_pairs.append((correlation_matrix.columns[i], correlation_matrix.columns[j], correlation_matrix.iloc[i, j]))
         return highly_correlated_pairs
 
+    def drop_highly_correlated_columns(self, columns_to_drop: list):
+        '''
+        Method to drop specified columns from the DataFrame
+        '''
+        self.df.drop(columns=columns_to_drop, inplace=True)
+        return self
 
 
     def get_cleaned_dataframe(self) -> pd.DataFrame:
