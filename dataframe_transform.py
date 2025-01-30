@@ -90,6 +90,19 @@ class DataFrameTransform:
         return self.df
 
 
+    def find_highly_correlated_pairs(correlation_matrix, threshold=0.8):
+        '''
+        Function to find pairs of highly correlated features
+        '''
+        highly_correlated_pairs = []
+        for i in range(len(correlation_matrix.columns)):
+            for j in range(i):
+                if abs(correlation_matrix.iloc[i, j]) > threshold:
+                    highly_correlated_pairs.append((correlation_matrix.columns[i], correlation_matrix.columns[j], correlation_matrix.iloc[i, j]))
+        return 
+
+
+
     def get_cleaned_dataframe(self) -> pd.DataFrame:
         return self.df
 
