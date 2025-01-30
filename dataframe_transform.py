@@ -106,7 +106,7 @@ class DataFrameTransform:
         Method to drop specified columns from the DataFrame
         '''
         self.df.drop(columns=columns_to_drop, inplace=True)
-        return self
+        return self.df
 
 
     def get_cleaned_dataframe(self) -> pd.DataFrame:
