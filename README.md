@@ -21,4 +21,11 @@ This project is part of the AiCore curriculum. The goal of the project is to per
 ## Installation
 1. clone the repo:
 
-        git clone https://
+        git clone https://github.com/Tori2305/Project_Customer_loans_in_finance-AiCore.git
+
+2. Naviagte to the project directory:
+
+        cd 
+
+
+
