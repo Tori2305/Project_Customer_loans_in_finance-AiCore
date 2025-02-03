@@ -53,7 +53,7 @@ def load_credentials(filepath:str) -> dict:
         return {}
 
 if __name__ == "__main__":
-    credentials = load_credentials("credentials.yaml")
+    credentials = load_credentials("config/credentials.yaml")
 
     connector = RDSDatabaseConnector(credentials)
     connector.initialise_engine()
