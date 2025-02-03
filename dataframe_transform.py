@@ -30,7 +30,7 @@ class DataFrameTransform:
         return null_df[null_df['null_count'] > 0]
     
     def drop_columns(self, columns: list) -> pd.DataFrame:
-         '''
+        '''
         Method to drop specified columns from the DataFrame.
         
         Parameters:
@@ -139,12 +139,12 @@ class DataFrameTransform:
                 upper_bound = Q3 + 1.5 * IQR
                 self.df = self.df[(self.df[column] >= lower_bound) & (self.df[column] <= upper_bound)]
             elif method == 'Z-score' or method == 'both':
-                self.df = self.df[(np.abs(stats.zscore(self.df[column])) < 3)]
+                self.df = self.df[(np.abs(stats.zscore(self.df[column])) < 3.5)]
         return self.df
 
 
     def find_highly_correlated_pairs(self, correlation_matrix: pd.DataFrame, threshold: float = 0.8) -> list:
-       '''
+        '''
         Method to find pairs of highly correlated features.
         
         Parameters:
@@ -162,7 +162,7 @@ class DataFrameTransform:
         return highly_correlated_pairs
 
     def drop_highly_correlated_columns(self, columns_to_drop: list) -> pd.DataFrame:
-      '''
+        '''
         Method to drop specified columns from the DataFrame.
         
         Parameters:
@@ -176,7 +176,7 @@ class DataFrameTransform:
 
 
     def get_cleaned_dataframe(self) -> pd.DataFrame:
-         '''
+        '''
         Method to get the cleaned DataFrame after transformations.
         
         Returns:
