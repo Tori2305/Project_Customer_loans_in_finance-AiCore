@@ -72,51 +72,34 @@ This project is part of the AiCore curriculum. The goal of the project is to per
 ## Structure
 
 **config**
-
-`credentials.yaml`: Contains configuration settings and credentials required for the project.
+- `credentials.yaml`: Contains configuration settings and credentials required for the project.
 
 **data**
-
-`final_df.csv`: The final dataset used for analysis.
-
-`loan_payments_copy.csv`: A copy of the loan payments dataset.
-
-`loan_payments.csv`: The original loan payments dataset.
+- `final_df.csv`: The final dataset used for analysis.
+- `loan_payments_copy.csv`: A copy of the loan payments dataset.
+- `loan_payments.csv`: The original loan payments dataset.
 
 **notebooks**
-
-`EDA_Analysis.ipynb`: Jupyter notebook for exploratory data analysis (EDA).
-
-`EDA_loan_portfolio.ipynb`: Jupyter notebook for EDA focused on the loan portfolio.
-
-`Personal_Learnings.ipynb`: Jupyter notebook documenting personal learnings and insights gained during the project.
+- `EDA_Analysis.ipynb`: Jupyter notebook for exploratory data analysis (EDA).
+- `EDA_loan_portfolio.ipynb`: Jupyter notebook for EDA focused on the loan portfolio.
+- `Personal_Learnings.ipynb`: Jupyter notebook documenting personal learnings and insights gained during the project.
 
 **results**
-
-`correlation_matrix.html`: HTML file containing the correlation matrix visualization.
+- `correlation_matrix.html`: HTML file containing the correlation matrix visualisation.
 
 **scripts**
-
-`data_transform.py`: Script for transforming the data.
-
-`data_visualiser.py`: Script for visualizing the data.
-
-`dataframe_info.py`: Script for extracting information from dataframes.
-
-`dataframe_transform.py`: Script for transforming dataframes.
-
-`db_utils.py`: Utility script for database operations.
-
-`plotter.py`: Script for plotting data visualizations.
+- `data_transform.py`: Script for transforming the data.
+- `data_visualiser.py`: Script for visualising the data.
+- `dataframe_info.py`: Script for extracting information from dataframes.
+- `dataframe_transform.py`: Script for transforming dataframes.
+- `db_utils.py`: Utility script for database operations.
+- `plotter.py`: Script for plotting data visualisations.
 
 **other files**
-
-`.gitignore`: Specifies files and directories to be ignored by Git.
-
-`README.md`: This file, providing an overview of the project.
-
-`requirements.txt`: Lists the dependencies and packages required for the project.
+- `.gitignore`: Specifies files and directories to be ignored by Git.
+- `README.md`: This file, providing an overview of the project.
+- `requirements.txt`: Lists the dependencies and packages required for the project.
 
 
-##License
+## License
 This project is licensed under the MIT License.
