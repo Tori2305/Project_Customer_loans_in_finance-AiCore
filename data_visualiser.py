@@ -43,3 +43,34 @@ class DataVisualiser:
             webbrowser.open('file://' + os.path.realpath(file_name))
         else:
             pio.show(fig, renderer='browser') 
+
+    def loan_indicators(self):
+        # Subset of users who have stopped paying (charged off) and those currently behind on payments
+        risk_statuses = ['Late (31-120 days)', 'Late (16-30 days)', 'Charged Off']
+        risk_customers = self.df[self.df['loan_status'].isin(risk_statuses)]
+
+        # Add a new column to distinguish between those already charged off and those at risk
+        risk_customers.loc[:, 'risk_category'] = risk_customers['loan_status'].apply(lambda x: 'Charged Off' if x == 'Charged Off' else 'At Risk')
+
+        fig_grade = px.histogram(risk_customers, x='grade', color='risk_category', barmode='group', title='Effect of Loan Grade on Payment Status')
+        fig_grade.show()
+
+        # Purpose effect
+        fig_purpose = px.histogram(risk_customers, x='purpose', color='risk_category', barmode='group', title='Effect of Loan Purpose on Payment Status')
+        fig_purpose.show()
+
+        # Home ownership effect
+        fig_home_ownership = px.histogram(risk_customers, x='home_ownership', color='risk_category', barmode='group', title='Effect of Home Ownership on Payment Status')
+        fig_home_ownership.show()
+
+        # Analysis results
+        print("Analysis Results:")
+        print("Grade distribution for Charged Off and At Risk loans:")
+        print(risk_customers.groupby(['grade', 'risk_category']).size())
+
+        print("\nPurpose distribution for Charged Off and At Risk loans:")
+        print(risk_customers.groupby(['purpose', 'risk_category']).size())
+
+        print("\nHome Ownership distribution for Charged Off and At Risk loans:")
+        print(risk_customers.groupby(['home_ownership', 'risk_category']).size())
+        
