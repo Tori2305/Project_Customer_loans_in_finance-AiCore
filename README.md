@@ -2,23 +2,30 @@
 
 ## Table of Contents
 - [Introduction](#Introduction)
-- [Features](#Features)
-- [Description](#Description)
 - [Learnings](#Learnings)
+- [Description](#Description)
+- 
 - [Usage](#Usage)
 
 ## Introduction
 
-This project is part of the AiCore curriculum and is designed to perform exploratory data analysis on the loan portfolio using statistical and visualisation techniques to uncover patterns, relationships, and anomalies. This will help make informed decisions about loan approvals, pricing, and risk management.
-
-## Features
-
-## Description
+This project is part of the AiCore curriculum. The goal of the project is to perform exploratory data analysis (EDA) using various statistical and data visualisation techniques to uncover patterns, relationships, and anomalies in the loan data. This analysis enables informed decisions about loan approvals, pricing, and risk management, ultimately improving the performance and profitability of the loan portfolio.
 
 ## Learnings
-1. Data Extraction - Connect to remote database and extract data through SQL queries and Python libraries such as SQLAlchemy and Pandas
-> 2. Data Cleaning & Preparation - Preparation of data for analysis via XYZ (To add in...) <
+- **Data Analysis:** Techniques for exploring and understanding large datasets.
+- **Statistical Methods:** Applying statistical methods to identify patterns and relationships.
+- **Data Visualization:** Creating insightful visualisations to communicate findings effectively.
+- **Risk Management:** Understanding the risk and return associated with loans.
+- **Decision-Making:** Providing data-driven insights for better business decisions.
 
-3. Exploratory Data Analysis - Use statistical and visualization techniques to explore the data, uncover patterns, relationships, and anomalies. This helps the financial institution make more informed decisions.
-4. Visualisation - Showcasing findings in a way that makes it easier to communicate with stakeholders. 
-5. Documentation - Organise code, following best practices and documenting my work. 
+## Installation
+1. clone the repo:
+
+        git clone https://github.com/Tori2305/Project_Customer_loans_in_finance-AiCore.git
+
+2. Naviagte to the project directory:
+
+        cd 
+
+
+
