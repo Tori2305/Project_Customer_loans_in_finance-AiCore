@@ -62,7 +62,7 @@ if __name__ == "__main__":
     data = connector.extract_data(query)
 
     if not data.empty:
-        connector.save_to_csv(data,"loan_payments.csv")
+        connector.save_to_csv(data,"data/loan_payments.csv")
     
     connector.disconnect()
 
